@@ -1,3 +1,5 @@
+import 'package:aumento/UserAuth/signin.dart';
+import 'package:aumento/UserAuth/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:aumento/Games/memory.dart';
@@ -17,15 +19,17 @@ class Aumento extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(title: 'Aumento'),
+      home: SignIn(),
+      routes: {
+        "/home": (_) => new HomePage(),
+        "/signin": (_) => new SignIn(),
+        "/signup": (_) => new SignUp(),
+      },
     );
   }
 }
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title}) : super(key: key);
-  final String title;
-
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -35,13 +39,23 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Text(
-            widget.title,
+            'Aumento',
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
             ),
           ),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.logout),
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, "/signin");
+              },
+              color: Colors.black,
+            )
+          ],
         ),
         body: Container(
           alignment: Alignment.center,

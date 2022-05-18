@@ -376,7 +376,7 @@ class _TileState extends State<Tile> {
             }
           } else {
             setState(() {
-              selectedTile = myPairs[widget.tileIndex].getImageAssetPath();
+              selectedTile = myPairs[widget.tileIndex].getImageAssetPath(); 
               selectedIndex = widget.tileIndex;
             });
           }
